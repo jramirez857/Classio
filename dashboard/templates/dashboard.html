@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'menuTemplate.html' %}
+
+{% block content %}
+
+    {% if presurl %}
+
+<br>
+<div style="height:100%">
+    <div class="panel form-element-padding" style="height:100%">
+                        <div class="panel-heading">
+                         <h4>Presentation</h4>
+                        </div>
+                        <div class="panel-body">
+                            <iframe src="{{ presurl }}" style="width:100%;height:100%"></iframe>
+                        </div>
+
+    </div>
+{% else %}
+    <br>
+    <div class="panel form-element-padding" style="height:100%">
+                        <div class="panel-heading">
+                         <h4>Presentation</h4>
+                        </div>
+                        <div class="panel-body">
+                            <br><h3>There is currently no active presentation.</h3>
+                        </div>
+
+
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

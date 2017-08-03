@@ -1,0 +1,31 @@
+{% extends 'menuTemplate.html' %}
+
+{% block content %}
+<br>
+<div>
+    <div class="panel form-element-padding">
+        <div class="panel-heading">
+         <h4>Polls</h4>
+        </div>
+        <div class="panel-body">
+            {% if latest_poll_list %}
+                <ul>
+                {% for poll in latest_poll_list %}
+                    <div onclick="location.href='{% url 'detail' poll.id %}';" style="cursor: pointer;" onMouseOver="this.style.background='lightgrey'" onMouseOut="this.style.background='white'"class="panel form-element-padding" style="width:50%">
+                        <h4>{{ poll.question }}</h4>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'delete_poll' poll.id %}"><button class="btn btn-default">Delete</button></a>
+                        {% endif %}
+                    </div></a>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <h4>No active Polls.</h4>
+            {% endif %}
+            {% if request.user.is_superuser %}
+                <a href="{% url 'add_poll' %}"><button>Add Poll</button></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

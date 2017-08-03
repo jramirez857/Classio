@@ -1,0 +1,29 @@
+{% extends 'menuTemplate.html' %}
+{% block content %}
+<br>
+<div>
+    <div class="panel form-element-padding">
+        <div class="panel-heading">
+         <h4>Polls</h4>
+        </div>
+        <div class="panel-body">
+        <h1>{{ poll.question }}</h1>
+
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+        <form action="{% url 'vote' poll.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in poll.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+        {% endfor %}
+        <input type="submit" value="Vote" />
+        </form>
+        {% if request.user.is_superuser %}
+            <a href="{% url 'add_choice' %}"><button>Add choice</button></a>
+            <a href="{% url 'results' %}"><button>View Results</button></a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

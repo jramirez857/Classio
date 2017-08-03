@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'menuTemplate.html' %}
+
+{% block content %}
+    <br>
+    <div class="panel form-element-padding">
+                        <div class="panel-heading">
+                         <h4>How to Share Presentation</h4>
+                        </div>
+                         <div class="panel-body" style="padding-bottom:30px;">
+                          <div class="col-md-12">
+                            <h4>1. <b>File</b> > <b>Share</b> > <b>Present Online</b></h4>
+                            <h4>2. Select <b>Enable remote viewers to download the presentation</b> (optional)</h4>
+                            <h4>3. Click <b>Present Online</b></h4>
+                            <h4>4. Click <b>Copy Link</b> and paste the link below</h4>
+                            <h4>5. When ready, click <b>Start Presentation</b></h4>
+                          </div>
+
+                          </div>
+    </div>
+    <br>
+    <div class="panel form-element-padding">
+                        <div class="panel-heading">
+                         <h4>Start Sharing</h4>
+                        </div>
+                         <div class="panel-body" style="padding-bottom:30px;">
+                          <div class="col-md-12">
+                              <form action="#" method="post">
+                                    {% csrf_token %}
+                                  {{ form }}
+                                <button type="submit" class="btn btn-default">Submit</button>
+                              </form>
+                              {% if presurl %}
+                                <br><p>Current URL: {{ presurl }}</p>
+                              {% else %}
+                                <br><p>Current URL: Presentation URL does not yet exist. Please enter one above.</p>
+                              {% endif %}
+                          </div>
+                        </div>
+    </div>
+{% endblock %}

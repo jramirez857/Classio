@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'menuTemplate.html' %}
+
+{% block content %}
+  {% load staticfiles %}
+  <br>
+    <div class="panel form-element-padding">
+                        <div class="panel-heading">
+                         <h4>Student's Questions</h4>
+                        </div>
+
+
+  <form id="chatform">
+    <table class="table table-striped" id="chat">
+      <thead>
+      <tr>
+        <th>Time</th>
+        <th>Username</th>
+        <th>Question</th>
+      </tr>
+
+      </thead>
+      <tbody>
+        {% for message in messages %}
+          <tr>
+            <td>{{ message.timestamp }}</td>
+            <td>{{  message.handle }}</td>
+            <td>{{ message.message }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form></div>
+<script type="text/javascript" src='{% static "jquery-3.1.1.slim.min.js" %}'></script>
+<script type="text/javascript" src='{% static "reconnecting-websocket.min.js" %}'></script>
+<script type="text/javascript" src='{% static "chat.js" %}'></script>
+{% endblock content %}
+
+

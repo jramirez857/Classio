@@ -1,0 +1,22 @@
+{% extends 'menuTemplate.html' %}
+{% block content %}
+<br>
+<div>
+    <div class="panel form-element-padding">
+        <div class="panel-heading">
+         <h4>Polls</h4>
+        </div>
+        <div class="panel-body">
+            <form action="#" method="post">
+                {% csrf_token %}
+                {{ form }}
+                {{ more_choices }}
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+            <a href="{% url 'polls' %}"><button>Return to polls</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
